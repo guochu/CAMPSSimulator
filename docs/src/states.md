@@ -7,14 +7,16 @@ Clifford 帧（承载全部稳定子纠缠）。底层 MPS 的表示与规范约
 
 ## 数据布局（底层 MPS，混合正则形式）
 
-每个 MPS 由两部分组成（[`src/mps.jl`](../../src/mps.jl)）：
+底层 MPS 为 `FiniteMPSAlgorithms.CanonicalMPS` 的**薄封装**（字段 `core`，
+[`src/mps.jl`](../../src/mps.jl)）：存储、键谱与正交化复用 FiniteMPSAlgorithms，
+封装层保持 `scaling == 1`（范数在站点数据中）。底层布局为：
 
-* **`data`**：`N` 个站点张量 `A::Array{T,3}`，轴序 = `(左键, 物理维, 右键)`，
+* **站点张量**：`N` 个 `A::Array{T,3}`，轴序 = `(左键, 物理维, 右键)`，
   开放边界（`size(ψ[1],1)==1`、`size(ψ[end],3)==1`），物理维恒为 2。
   **量子态就是张量网络的普通收缩**——网络中不额外含权重结点；
-* **`svectors`**：长度 `N+1` 的键谱数组，`svectors[b]` 为键 `b`
-  （站点 `b-1` 与 `b` 之间）的 **Schmidt 谱（真实奇异值）**；边界键为 `[1]`，
-  `nothing` 表示谱未知（构造后被 `canonicalize!` 填上）。
+* **键谱 `core.s`**：长度 `N+1` 的 Schmidt 谱数组，`core.s[b+1]` 为键 `b`
+  （站点 `b` 与 `b+1` 之间）的 **Schmidt 谱（真实奇异值）**；边界键为 `[1]`，
+  `missing` 表示谱未知（构造后被 `canonicalize!` 填上）。
 
 当所有站点张量**右正则**（`(左键, 物理×右键)` 矩阵行正交）且键谱正确时，态处于
 **混合正则形式**（`iscanonical(mps(ψ))` 为 `true`）：

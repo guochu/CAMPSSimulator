@@ -2,7 +2,9 @@
     CAMPSSimulator
 
 基于 **Clifford 增广 MPS（CAMPS）** 的通用量子线路模拟后端（与同目录
-`MPSSimulator` 平行、接口对齐但内核独立）。
+`MPSSimulator` 平行、接口对齐；底层 MPS 为 `FiniteMPSAlgorithms.CanonicalMPS`
+的薄封装，规范保持与张量操作层复用 FiniteMPSAlgorithms，不使用其
+experimental 部分）。
 
 态表示：`|ψ⟩ = U_frame |φ⟩`。其中
 
@@ -46,6 +48,15 @@ using QuantumCircuits: GateOp, ChannelOp, MeasOp, ReinitOp, BarrierOp, IfOp, Blo
                        qubits, mat, kraus, parameters, unroll
 import QuantumCircuits: nqubits, measure
 using QuantumCircuits.Interface: Backend, SimResult
+
+# ── FiniteMPSAlgorithms：张量操作 / CanonicalMPS（不使用 experimental 部分）──
+using FiniteMPSAlgorithms
+using FiniteMPSAlgorithms: CanonicalMPS, Orthogonalize, prodmps, scaling, setscaling!,
+                           SVD
+# 扩展 FiniteMPSAlgorithms 的泛型函数（封装态的方法挂到同一函数上）
+import FiniteMPSAlgorithms: apply!, canonicalize!, expectation, iscanonical,
+                            svectors_uninitialized
+import LinearAlgebra: normalize!, norm, dot
 
 # ── 截断 / 默认参数 ─────────────────────────────────────────────────────────
 include("tensorops.jl")

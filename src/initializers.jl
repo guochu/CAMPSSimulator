@@ -13,13 +13,13 @@ function _product_mps(::Type{T}, amps::AbstractVector{<:AbstractVector}) where {
     L = length(amps)
     L >= 1 || throw(ArgumentError("empty state"))
     CT = _ctype(T)
-    R = real(CT)
-    data = [Array{CT,3}(undef, 1, 2, 1) for _ in 1:L]
-    for (k, a) in enumerate(amps)
-        length(a) == 2 || throw(ArgumentError("each local amplitude must have length 2"))
-        data[k][1, :, 1] .= a
+    all(a -> length(a) == 2, amps) ||
+        throw(ArgumentError("each local amplitude must have length 2"))
+    psi = MPS(prodmps(CT, collect(amps)))
+    for k in 2:length(psi)                       # 乘积态：内部键谱平凡 [1]
+        psi.core.s[k] = [one(real(CT))]
     end
-    return MPS(data, [[one(R)] for _ in 1:(L+1)])
+    return psi
 end
 
 "计算基 MPS：`bits[k]` = qubit `k` 的取值（0/1）。"

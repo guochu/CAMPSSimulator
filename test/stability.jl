@@ -44,7 +44,7 @@ end
         maxdev = 0.0
         for k in 1:(n-1)
             Em = CAMPSSimulator._transfer(Em, mps(ψ)[k], mps(ψ)[k])
-            D2 = mps(ψ).svectors[k+1] .^ 2
+            D2 = mps(ψ).core.s[k+1] .^ 2
             maxdev = max(maxdev, size(Em, 1) == length(D2) ? maximum(abs.(Em - Diagonal(D2))) : Inf)
         end
         @test maxdev < 1e-8
@@ -54,7 +54,7 @@ end
         sreal = schmidt_all(v)
         for b in 1:(n-1)
             rt = filter(x -> x > 1e-12, sreal[b])
-            st = filter(x -> x > 1e-9, mps(ψ).svectors[b+1])
+            st = filter(x -> x > 1e-9, mps(ψ).core.s[b+1])
             @test length(st) == length(rt)
             @test st ≈ rt atol = 1e-8 rtol = 1e-6
         end
@@ -81,7 +81,7 @@ end
     s2 = schmidt_all(v2)
     for b in 1:(n-1)
         rt = filter(x -> x > 1e-12, s2[b])
-        st = filter(x -> x > 1e-9, mps(ψ2).svectors[b+1])
+        st = filter(x -> x > 1e-9, mps(ψ2).core.s[b+1])
         @test length(st) == length(rt)
         # TODO：极小 D(=3) + 反复折帧的长程截断下，个别键的 stored 谱与
         # 真实 Schmidt 会有 1%~5% 记账偏差（短程/常规 D 下无此现象，

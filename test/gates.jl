@@ -136,7 +136,7 @@ end
             v2 = CAMPSSimulator._statevector_from_mps(copy(M))
             for bb in 1:(n-1)
                 rt = filter(x -> x > 1e-12, svdvals(reshape(v2, 1 << bb, 1 << (n - bb))))
-                st = filter(x -> x > 1e-9, M.svectors[bb+1])
+                st = filter(x -> x > 1e-9, M.core.s[bb+1])
                 @test length(st) == length(rt)
                 @test st ≈ rt atol = 1e-5 rtol = 1e-3
             end
