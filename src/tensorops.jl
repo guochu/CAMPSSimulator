@@ -4,9 +4,7 @@
 # 直接复用 FiniteMPSAlgorithms（不使用其 experimental 部分）；
 # 这里只保留 CAMPSSimulator 特有的截断辅助。
 
-# 兼容别名：CAMPSSimulator 旧类型名 → FiniteMPSAlgorithms 的截断方案
-const TruncateCutoff = TruncateRelError
-const TruncationDimCutoff = TruncateDimCutoff
+# 便捷构造：`trunccutoff` 与 FiniteMPSAlgorithms 的 `truncrelerr` 等价
 trunccutoff(args...; kwargs...) = truncrelerr(args...; kwargs...)
 
 """

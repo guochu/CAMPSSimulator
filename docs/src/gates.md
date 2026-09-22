@@ -157,14 +157,15 @@ end
 
 ## 8. 截断方案与默认值
 
-`TruncationScheme` 与 MPSSimulator 同名同语义（[`src/tensorops.jl`](../../src/tensorops.jl)）：
+`TruncationScheme` 与 MPSSimulator 同名同语义（re-export 自
+`FiniteMPSAlgorithms`，见 [`src/tensorops.jl`](../../src/tensorops.jl)）：
 
 | 类型 / 构造 | 语义 |
 |---|---|
 | `NoTruncation()` | 不截断，保留全部奇异值 |
 | `truncdim(D)` / `TruncateDim` | 只保留最大的 `D` 个 |
-| `trunccutoff(ϵ=…)` / `TruncateCutoff` | 丢弃相对范数² 低于 `ϵ²` 的奇异值 |
-| `truncdimcutoff(D, ϵ)` / `TruncationDimCutoff` | 先按 `ϵ` 定截断点、再封顶 `D`、至少留 `add_back` |
+| `trunccutoff(ϵ=…)` / `TruncateRelError` | 丢弃相对范数² 低于 `ϵ²` 的奇异值 |
+| `truncdimcutoff(D, ϵ)` / `TruncateDimCutoff` | 先按 `ϵ` 定截断点、再封顶 `D`、至少留 `add_back` |
 
 默认值集中定义于 [`src/defaults.jl`](../../src/defaults.jl)：
 

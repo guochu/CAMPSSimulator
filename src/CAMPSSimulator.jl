@@ -55,7 +55,7 @@ using FiniteMPSAlgorithms: CanonicalMPS, Orthogonalize, prodmps, scaling, setsca
                            SVD
 # 扩展 FiniteMPSAlgorithms 的泛型函数（封装态的方法挂到同一函数上）
 import FiniteMPSAlgorithms: apply!, canonicalize!, expectation, iscanonical,
-                            svectors_uninitialized
+                            isrightcanonical, svectors_uninitialized
 import LinearAlgebra: normalize!, norm, dot
 
 # ── 截断 / 默认参数 ─────────────────────────────────────────────────────────
@@ -78,8 +78,8 @@ include("quantumcircuits/simulate.jl")
 include("quantumcircuits/backend.jl")
 
 # ── 导出 ────────────────────────────────────────────────────────────────────
-export # 截断方案
-    TruncationScheme, NoTruncation, TruncateDim, TruncateCutoff, TruncationDimCutoff,
+export # 截断方案（FiniteMPSAlgorithms re-export）
+    TruncationScheme, NoTruncation, TruncateDim, TruncateRelError, TruncateDimCutoff,
     truncdim, trunccutoff, truncdimcutoff,
     DefaultTruncation, DefaultConjWindow, DefaultSearchDisentangler,
     # 态

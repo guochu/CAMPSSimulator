@@ -118,14 +118,8 @@ LinearAlgebra.dot(a::MPS, b::MPS) = dot(a.core, b.core)
 
 # ── 规范检查 ────────────────────────────────────────────────────────────────
 
-"单张量是否右正则（矩阵 (l × (p,r)) 行正交）。"
-function _isrightcanonical(A::AbstractArray{T,3}; atol::Real=1e-8) where {T}
-    Dl, d, Dr = size(A)
-    M = reshape(A, Dl, d * Dr)
-    Id = Matrix{real(T)}(I, Dl, Dl)
-    return isapprox(M * M', Id; atol=atol)
-end
-isrightcanonical(psi::MPS; kwargs...) = all(A -> _isrightcanonical(A; kwargs...), psi.core.data)
+"所有站点张量是否右正则（复用 `FiniteMPSAlgorithms.isrightcanonical`）。"
+isrightcanonical(psi::MPS; kwargs...) = all(A -> isrightcanonical(A; kwargs...), psi.core.data)
 
 """
     iscanonical(psi::MPS; atol) -> Bool
