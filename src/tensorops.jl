@@ -4,9 +4,6 @@
 # 直接复用 FiniteMPSAlgorithms（不使用其 experimental 部分）；
 # 这里只保留 CAMPSSimulator 特有的截断辅助。
 
-# 便捷构造：`trunccutoff` 与 FiniteMPSAlgorithms 的 `truncrelerr` 等价
-trunccutoff(args...; kwargs...) = truncrelerr(args...; kwargs...)
-
 """
     _truncation_keep(v, trunc) -> (r, err2)
 

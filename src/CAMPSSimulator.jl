@@ -80,7 +80,7 @@ include("quantumcircuits/backend.jl")
 # ── 导出 ────────────────────────────────────────────────────────────────────
 export # 截断方案（FiniteMPSAlgorithms re-export）
     TruncationScheme, NoTruncation, TruncateDim, TruncateRelError, TruncateDimCutoff,
-    truncdim, trunccutoff, truncdimcutoff,
+    truncdim, truncdimcutoff,
     DefaultTruncation, DefaultConjWindow, DefaultSearchDisentangler,
     # 态
     CAMPS,

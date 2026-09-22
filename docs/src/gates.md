@@ -164,7 +164,7 @@ end
 |---|---|
 | `NoTruncation()` | 不截断，保留全部奇异值 |
 | `truncdim(D)` / `TruncateDim` | 只保留最大的 `D` 个 |
-| `trunccutoff(ϵ=…)` / `TruncateRelError` | 丢弃相对范数² 低于 `ϵ²` 的奇异值 |
+| `truncrelerr(ϵ=…)` / `TruncateRelError` | 丢弃相对范数² 低于 `ϵ²` 的奇异值 |
 | `truncdimcutoff(D, ϵ)` / `TruncateDimCutoff` | 先按 `ϵ` 定截断点、再封顶 `D`、至少留 `add_back` |
 
 默认值集中定义于 [`src/defaults.jl`](../../src/defaults.jl)：
