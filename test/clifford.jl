@@ -32,7 +32,7 @@ using Random, Test
             end
         end
         # 极端小键维也不影响：Clifford 门全在帧里，MPS 从未截断
-        @test CAMPSSimulator.max_bond_dimension(CAMPSSimulator.mps(ψ)) == 1
+        @test CAMPSSimulator.bonddim(CAMPSSimulator.mps(ψ)) == 1
         v = exact_simulate(n, gates)
         vs = CAMPSSimulator.statevector(ψ)
         @test fid(v, vs) ≈ 1.0 atol = 1e-9
@@ -46,7 +46,7 @@ using Random, Test
         for k in 2:n
             CAMPSSimulator.apply!(ψ, _CX, (1, k))   # 控制=q1
         end
-        @test CAMPSSimulator.max_bond_dimension(CAMPSSimulator.mps(ψ)) == 1
+        @test CAMPSSimulator.bonddim(CAMPSSimulator.mps(ψ)) == 1
         # 幅度：只有 |00..0⟩ 与 |11..1⟩
         a0 = CAMPSSimulator.amplitude(ψ, zeros(Int, n))
         a1 = CAMPSSimulator.amplitude(ψ, ones(Int, n))

@@ -75,7 +75,7 @@ end
             crz = ComplexF64[1 0 0 0; 0 1 0 0; 0 0 exp(-im*th/2) 0; 0 0 0 exp(im*th/2)]
             CAMPSSimulator.apply!(ψ2, crz, (a, b); trunc=truncdim(D))
         end
-        @test maximum(CAMPSSimulator.bond_dimensions(mps(ψ2))) <= D + 1
+        @test CAMPSSimulator.bonddim(mps(ψ2)) <= D + 1
     end
     v2 = CAMPSSimulator._statevector_from_mps(CAMPSSimulator.mps(ψ2))
     s2 = schmidt_all(v2)

@@ -94,7 +94,7 @@ function check_canonical(ψ::CAMPS; atol::Real=1e-9, label::String="")
     rowdev, rowsite, trdev, trbond = diagnostics(ψ)
     println(rpad("[$label]", 26),
             " norm=", round(normv, digits=8),
-            " maxbond=", maximum(CAMPSSimulator.bond_dimensions(M)),
+            " maxbond=", CAMPSSimulator.bonddim(M),
             " frame=", length(CAMPSSimulator.frame(ψ).gates),
             " canonical(atol=$atol)=", ok,
             ok ? "" : "  [行残差=$rowdev@site$rowsite, transfer残差=$trdev@bond$trbond]")
@@ -161,7 +161,7 @@ function main(; nseeds::Int=6, n::Int=8, nop::Int=80)
             CAMPSSimulator.apply!(ψB, m, Tuple(ps); trunc=truncdim(D))
         end
         okB = check_canonical(ψB; atol=1e-8, label="seed$seed · 截断 D=$D")
-        nb = maximum(CAMPSSimulator.bond_dimensions(mps(ψB)))
+        nb = CAMPSSimulator.bonddim(mps(ψB))
         allok &= okB && nb <= D + 1
     end
     println(allok ? "\n✅ 全部通过：演化结束后 MPS 均保持规范形式" :

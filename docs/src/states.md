@@ -96,7 +96,7 @@ q[2]: ────X──S─
 
 ## 查询与规范型
 
-* 键维：`bond_dimensions(ψ)` / `max_bond_dimension(ψ)`（作用于 CAMPS 时取
+* 键维：`bonddims(ψ)`（内部键，长度 L-1）/ `bonddim(ψ)`（最大键维）（作用于 CAMPS 时取
   其 MPS 部分，即**魔法部分的键维**）；
 * 规范：`iscanonical(mps(ψ))`（需先取 `mps(ψ)`，CAMPS 本身无此方法）；
 * 恢复规范 / 键谱：`canonicalize!(mps(ψ); trunc=NoTruncation(), normalize=true)`，

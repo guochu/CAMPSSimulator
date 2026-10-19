@@ -131,7 +131,7 @@ end
             CAMPSSimulator.apply!(ψ, _CX, (b, c); trunc=truncdim(D))
             CAMPSSimulator.apply!(ψ, CCX, (c, a, b); trunc=truncdim(D))
             M = mps(ψ)
-            @test maximum(CAMPSSimulator.bond_dimensions(M)) <= D + 1
+            @test CAMPSSimulator.bonddim(M) <= D + 1
             # MPS（魔法部分 φ）谱与真实 Schmidt 一致
             v2 = CAMPSSimulator._statevector_from_mps(copy(M))
             for bb in 1:(n-1)

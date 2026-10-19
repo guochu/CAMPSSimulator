@@ -33,7 +33,7 @@ push!(c, H(1))
 push!(c, CX(1, 2))
 
 ψ = simulate(c, zero_state(2))        # 终态是 CAMPS（simulate! 就地）
-println("max bond = ", max_bond_dimension(mps(ψ)))   # 1：H 与 CX 都进了帧
+println("max bond = ", bonddim(mps(ψ)))   # 1：H 与 CX 都进了帧
 println("probabilities = ", marginal_probabilities(ψ, 1))
 ```
 

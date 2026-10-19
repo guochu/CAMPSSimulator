@@ -54,10 +54,11 @@ _svec_eq(a::Missing, b) = false
 _svec_eq(a, b::Missing) = false
 _svec_eq(a, b) = a == b
 
-"键维数组（长度 L+1）。"
-bond_dimensions(psi::MPS) = Int[size(psi[1], 1); [size(A, 3) for A in psi.core.data]]
-"最大键维。"
-max_bond_dimension(psi::MPS) = maximum(bond_dimensions(psi))
+# 键维查询（与 FiniteMPSAlgorithms 对齐：bonddims 为内部键 L-1 个、
+# bonddim(ψ) 为最大键维、bonddim(ψ, b) 为指定键；封装态转发到 CanonicalMPS）
+bonddim(psi::MPS, b::Int) = bonddim(psi.core, b)
+bonddims(psi::MPS) = bonddims(psi.core)
+bonddim(psi::MPS) = bonddim(psi.core)
 "键谱是否未初始化。"
 svectors_uninitialized(psi::MPS) = svectors_uninitialized(psi.core)
 

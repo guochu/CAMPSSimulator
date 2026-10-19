@@ -55,7 +55,8 @@ using FiniteMPSAlgorithms: CanonicalMPS, Orthogonalize, prodmps, scaling, setsca
                            SVD
 # 扩展 FiniteMPSAlgorithms 的泛型函数（封装态的方法挂到同一函数上）
 import FiniteMPSAlgorithms: apply!, canonicalize!, expectation, iscanonical,
-                            isrightcanonical, svectors_uninitialized
+                            isrightcanonical, svectors_uninitialized,
+                            bonddim, bonddims
 import LinearAlgebra: normalize!, norm, dot
 
 # ── 截断 / 默认参数 ─────────────────────────────────────────────────────────
@@ -85,7 +86,7 @@ export # 截断方案（FiniteMPSAlgorithms re-export）
     # 态
     CAMPS,
     zero_state, onehot_state, qubit_encoding_state, rand_state,
-    bond_dimensions, max_bond_dimension, mps, frame,
+    bonddim, bonddims, mps, frame,
     # 核心操作
     apply, apply!, fold_frame!, measure!, marginal_probabilities,
     expectation, amplitude, statevector, normalize!, reset_qubit_zero!,
