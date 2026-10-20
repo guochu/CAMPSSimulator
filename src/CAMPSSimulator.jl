@@ -43,8 +43,9 @@ module CAMPSSimulator
 using LinearAlgebra
 using Random
 using QuantumCircuits
-using QuantumCircuits: GateOp, ChannelOp, MeasOp, ReinitOp, BarrierOp, IfOp, BlockOp,
+using QuantumCircuits: GateOp, ChannelOp, MeasOp, ResetOp, BarrierOp, IfOp, BlockOp,
                        Operation, Circuit, Cond, Param, ClbitRef, CReg, ParamVector,
+                       ClassicalStore, reg_value, set_clbit!,
                        qubits, mat, kraus, parameters, unroll
 import QuantumCircuits: nqubits, measure
 using QuantumCircuits.Interface: Backend, SimResult
@@ -100,6 +101,6 @@ export # 截断方案（FiniteMPSAlgorithms re-export）
     # QuantumCircuits.Interface 再导出
     simulate, simulate!,
     # 桥接层
-    ClassicalStore, CAMPSBackend
+    CAMPSBackend
 
 end # module

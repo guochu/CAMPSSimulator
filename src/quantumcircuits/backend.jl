@@ -64,7 +64,7 @@ function simulate(c::Circuit, b::CAMPSBackend;
                              b.trunc, b.search, b.wmax, store)
         outcome = Dict{ClbitRef,Int}()
         for reg in measured
-            v = _reg_value(store, reg)
+            v = reg_value(store, reg)
             for i in 1:reg.n
                 outcome[ClbitRef(reg, i)] = (v >> (i - 1)) & 1
             end

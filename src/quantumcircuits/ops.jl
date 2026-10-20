@@ -12,7 +12,7 @@ end
 
 把 IR 指令 `op` 就地作用到 CAMPS 态上。
 
-支持：`GateOp`（酉门）、`MeasOp`（坍缩，测量结果丢弃）、`ReinitOp`、
+支持：`GateOp`（酉门）、`MeasOp`（坍缩，测量结果丢弃）、`ResetOp`、
 `BarrierOp`（无操作）、`BlockOp`（展开执行）。`IfOp` 需要经典寄存器
 状态，请通过 `simulate` 执行。
 
@@ -35,7 +35,7 @@ function apply!(s::CAMPS, op::ChannelOp, table::Union{Nothing,AbstractDict}=noth
                         "Clifford 帧 + 纯态 MPS 表示无法精确承载密度算符。"))
 end
 
-function apply!(s::CAMPS, op::ReinitOp, table::Union{Nothing,AbstractDict}=nothing;
+function apply!(s::CAMPS, op::ResetOp, table::Union{Nothing,AbstractDict}=nothing;
                 trunc::TruncationScheme=DefaultTruncation,
                 search::Bool=DefaultSearchDisentangler,
                 wmax::Int=DefaultConjWindow)
