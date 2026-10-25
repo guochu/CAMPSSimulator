@@ -9,8 +9,6 @@
 #   * 入站 Clifford 门追加到列表末尾（作用在顶层）；
 #   * 截断处选中的解纠缠门 C 以 `adjoint(C)` 前插（作用在 MPS 侧）。
 
-using LinearAlgebra
-
 const _PAULI_I = ComplexF64[1 0; 0 1]
 const _PAULI_X = ComplexF64[0 1; 1 0]
 const _PAULI_Y = ComplexF64[0 -im; im 0]

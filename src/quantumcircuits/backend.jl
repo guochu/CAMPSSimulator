@@ -1,8 +1,5 @@
 # quantumcircuits/backend.jl — QuantumCircuits.Interface 后端（CAMPS）
 
-using QuantumCircuits.Interface: Backend, SimResult
-import QuantumCircuits.Interface: simulate, supports
-
 """
     CAMPSBackend(; dtype=ComplexF64, trunc=DefaultTruncation,
                  search=true, wmax=8) <: QuantumCircuits.Interface.Backend

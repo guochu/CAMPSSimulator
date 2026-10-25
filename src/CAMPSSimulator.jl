@@ -45,10 +45,11 @@ using Random
 using QuantumCircuits
 using QuantumCircuits: GateOp, ChannelOp, MeasOp, ResetOp, BarrierOp, IfOp, BlockOp,
                        Operation, Circuit, Cond, Param, ClbitRef, CReg, ParamVector,
-                       ClassicalStore, reg_value, set_clbit!,
+                       ClassicalStore, reg_value, set_clbit!, eval_cond,
                        qubits, mat, kraus, parameters, unroll
 import QuantumCircuits: nqubits, measure
 using QuantumCircuits.Interface: Backend, SimResult
+import QuantumCircuits.Interface: simulate, simulate!, supports
 
 # ── FiniteMPSAlgorithms：张量操作 / CanonicalMPS（不使用 experimental 部分）──
 using FiniteMPSAlgorithms

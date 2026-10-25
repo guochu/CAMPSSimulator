@@ -4,8 +4,6 @@
 # QuantumCircuits 统一提供（2026-10 上移，各后端共享）；本文件只保留
 # CAMPS 态上的 IfOp 分支执行。
 
-using QuantumCircuits: eval_cond
-
 """
     apply!(state, op::IfOp, store::ClassicalStore; trunc=DefaultTruncation) -> state
 

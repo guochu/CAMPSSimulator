@@ -59,8 +59,6 @@ _param_env(::Circuit, ::Nothing) = _ParamEnv()
 
 # ── 演化 ─────────────────────────────────────────────────────────────────────
 
-import QuantumCircuits.Interface: simulate, simulate!
-
 """
     simulate(c::Circuit, state::CAMPS; params=nothing, trunc=DefaultTruncation,
              search=true, wmax=8) -> state'
